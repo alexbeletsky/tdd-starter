@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  tdd:
+    build: .
+    volumes:
+      - .:/opt/tdd:cached
+      - ${HOME}/.npmrc:/root/.npmrc
+    ports:
+      - 8084:8084
+      - 9094:9229
+    environment:
+      - NODE_ENV=development
+      - PORT=6084
+      - RABBITMQ_USER=user
+      - RABBITMQ_PASS=pass
+      - RABBITMQ_URL=amqp://user:pass@rabbitmq.tdd.local:5672/vhost
+    depends_on:
+      - rabbitmq
+    container_name: tdd.local
+
+  rabbitmq:
+    image: rabbitmq:3.6-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=pass
+      - RABBITMQ_DEFAULT_VHOST=vhost
+    ports:
+      - 15684:15672
+      - 5684:5672
+      - 5685:5671
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    container_name: rabbitmq.tdd.local
+
+volumes:
+  rabbitmq-data:

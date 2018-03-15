@@ -1,0 +1,7 @@
+{
+  "extends": ["blogfoster", "prettier"],
+  "rules": {
+    "import/no-named-as-default": 1,
+    "class-methods-use-this": 1
+  }
+}
