@@ -1,0 +1,6 @@
+--require babel-register
+--sort
+--colors
+--retries 1
+--reporter spec
+--timeout 10000
