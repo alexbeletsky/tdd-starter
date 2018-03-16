@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha",
+    "test:watch": "NODE_ENV=test mocha --watch",
     "d:login": "docker-compose run --rm --service-ports tdd /bin/bash"
   },
   "devDependencies": {
